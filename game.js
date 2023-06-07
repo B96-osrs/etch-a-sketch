@@ -4,7 +4,7 @@ let gridSize = 50;
 let selectedColor = "black";
 let eraserButton = document.getElementById("eraser-button");
 let colorPicker = document.querySelector("#color-picker");
-let gridSlider = document.querySelector("#slider");
+let gridSlider = document.querySelector("#size-slider");
 let sliderValue = document.querySelector("#slider-value");
 let rainbowSwitch = document.querySelector("#rainbow-switch");
 let rainbowState = false;
@@ -47,31 +47,9 @@ function drawOnCanvas() {
                 }
                 else {
                     element.style.backgroundColor = selectedColor;
-                }
-                console.log("canvas clicked");
-
-                }
-        });   
-    }); 
-}
-
-function drawOnCanvasRainbow() {
-    canvasTile = document.querySelectorAll(".columnDiv");
-    canvasTile.forEach(element => {
-        element.addEventListener("mouseover", function(e) {
-            if(e.buttons === 1) {
-                if(element.dataset.val == "check") {
-                    let newColor = element.style.backgroundColor;
-                    element.style.backgroundColor = darkenRgb(newColor);                   
-                }
-                else {
-                    const randomColor = getRandomRgb();
-                    element.style.backgroundColor = randomColor;
                     element.setAttribute("data-val", "check");
-
                 }
-
-            }
+                }
         });   
     }); 
 }
@@ -114,10 +92,6 @@ function turnOffRainbow() {
         rainbowSwitch.click();
     }
 }
-
-
-
-
 
 
 createGrid(50);

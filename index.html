@@ -10,10 +10,25 @@
 <body>
   <div id="header">Etch a Sketch</div>
     <div id="main-box">
-    <div id="controls-box">
-        <div>Color</div>
-        <div>Grid size:</div>
-        <div>Eraser</div>
+     <div id="controls-box">
+      <div class="color-container">
+        <label id="color-label">Color</label>
+        <input type="color" id="color-picker" value="#000000">
+      </div>
+
+      <div class="rainbow-container">
+        <div>Rainbow</div>
+        <label class="switch">
+          <input type="checkbox" id ="rainbow-switch">
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <button id="eraser-button">Eraser</button>
+      <div class="slider-container"> 
+        <input type="range" min = "1" max = "100" value="50" id="size-slider">
+        <label id="slider-value">50</label>
+      </div>
     </div>
     <div id="draw-box"></div>
   </div>
