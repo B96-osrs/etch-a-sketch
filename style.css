@@ -47,9 +47,9 @@ body {
     width:16px;
 }
 
-#columnDiv {
+.columnDiv {
     display: flex;
     flex:1;
     background-color: green;
-
+    user-select: none;
 }
