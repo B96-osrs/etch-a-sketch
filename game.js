@@ -1,7 +1,7 @@
 let drawBox = document.getElementById("draw-box");
 let canvasTile;
 let gridSize = 50;
-let selectedColor = "black";
+let selectedColor = "#222222";
 let eraserButton = document.getElementById("eraser-button");
 let colorPicker = document.querySelector("#color-picker");
 let gridSlider = document.querySelector("#size-slider");
