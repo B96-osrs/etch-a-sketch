@@ -1,9 +1,14 @@
-let gridRow = [];
-let gridColumn = [];
 let drawBox = document.getElementById("draw-box");
 let canvasTile;
+let gridSize = 50;
+let selectedColor = "black";
+let eraserButton = document.getElementById("eraser-button");
+let colorPicker = document.querySelector("#color-picker");
+let gridSlider = document.querySelector("#slider");
 
 function createGrid(sizeInput) {
+    let gridRow = [];
+    let gridColumn = [];
     for(let i = 0; i < sizeInput; i++) {
         gridRow[i] = document.createElement("div");
         drawBox.appendChild(gridRow[i]);
@@ -14,44 +19,56 @@ function createGrid(sizeInput) {
             gridColumn[j].setAttribute("class", "columnDiv");
         }
     }
-
-
+}
+function clearGrid() {
+    while(drawBox.firstChild) {
+        drawBox.removeChild(drawBox.firstChild);
+    }
 }
 
-createGrid(50);
-canvasTile = document.querySelectorAll(".columnDiv");
+function drawOnCanvas() {
+    canvasTile = document.querySelectorAll(".columnDiv");
+    canvasTile.forEach(element => {
+        element.addEventListener("mouseover", function(e) {
+            if(e.buttons === 1) {
+            element.style.backgroundColor = selectedColor;
+            }
+            console.log("canvas clicked");
+        });   
+    }); 
+}
 
-canvasTile.forEach(element => {
-    element.addEventListener("mouseover", function(e) {
-        if(e.buttons === 1) {
-        element.style.backgroundColor = "black";
-        }
-    });   
+
+
+
+
+createGrid(50);
+drawOnCanvas();
+
+
+
+
+
+eraserButton.addEventListener("click", function(e) {
+    selectedColor = "white";
 });
 
 
-
-// for(let i = 0; i < 6; i++) {
-//     const testArray = document.querySelectorAll(".columnDiv");
-//     console.log(testArray[i]);
-// }
+colorPicker.addEventListener("input", function(e) {
+    selectedColor = colorPicker.value;
 
 
+});
+
+colorPicker.addEventListener("click", function() {
+    selectedColor = colorPicker.value;
+});
+
+gridSlider.addEventListener("input", function(e) {
+    gridSize = gridSlider.value;
+    clearGrid();
+    createGrid(gridSize);
+    drawOnCanvas();
+});
 
 
-
-
-
-// document.querySelectorAll(".columnDiv").forEach(element => {
-//     element.addEventListener("click", function() {
-//         const currentTile = element;
-//         currentTile.style.backgroundColor = "red";
-//     });  
-// });
-
-// scissorsButton.addEventListener("click", function() {
-//     const userPickBox = document.getElementById("user-pick");
-//     userPickBox.textContent ="SCISSORS";
-
-//         playRound("scissors");     
-// });
